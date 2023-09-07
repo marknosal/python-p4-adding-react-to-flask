@@ -14,6 +14,17 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
+@app.route('/')
+def home():
+    home_message = {
+        'message': 'Welcome home!',
+    }
+    response = make_response(
+        jsonify(home_message),
+        200,
+    )
+    return response
+
 @app.route('/messages', methods=['GET', 'POST'])
 def messages():
     if request.method == 'GET':
